@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remotly | Job Portal</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="./styles/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section class="hero-banner">
+      <header class="header">
+        <nav class="navbar">
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-house"></i
+            ><span class="nav-label">Home </span></a
+          >
+          <a href="#jobs" class="nav-item"
+            ><i class="fa-solid fa-briefcase"></i
+            ><span class="nav-label">Jobs</span>
+          </a>
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-heart"></i
+            ><span class="nav-label">Favourites</span></a
+          >
+        </nav>
+      </header>
+      <div class="hero-content">
+        <h2 class="hero-banner-title">Remotly</h2>
+      </div>
+    </section>
+    <section class="job-section">
+      <h3 class="job-section-title">Jobs</h3>
+      <div class="jobs-filters-container">
+        <div class="job-filters">
+          <label for="geo-filter">
+            <i class="fa-solid fa-filter"></i>Filter By:
+          </label>
+          <select name="geo" id="geo-filter">
+            <option disabled selected value="">Select Location</option>
+            <option value="">Anywhere</option>
+            <option value="usa">USA</option>
+            <option value="canada">Canada</option>
+            <option value="china">China</option>
+            <option value="japan">Japan</option>
+          </select>
+          <label for="sort-filter"
+            ><i class="fa-solid fa-sort"></i> Sort Salary:
+          </label>
+          <select name="sort" id="sort-filter">
+            <option value="hl">High to Low</option>
+            <option value="lh">Low to High</option>
+          </select>
+        </div>
+        <div class="search_box">
+          <i class="fa-solid fa-magnifying-glass"></i
+          ><input id="job_search" placeholder="Search here..." />
+        </div>
+      </div>
+      <div class="jobs_container" id="jobs">
+        <div class="job-card">
+          <div class="job_logo">
+            <img
+              class="job_logo_img"
+              src="https://img.logo.dev/Splunk.com?token=pk_TLRk9T8ASV2UmMY8qXNNmQ"
+              alt="company name"
+            />
+          </div>
+          <div class="job_content">
+            <p class="job-title">
+              <span class="job-company">Company</span>
+              <span class="job-profile">Software Engineer</span>
+            </p>
+            <p class="job_location">
+              <i class="fa-solid fa-location-dot"></i>Job Available in Country
+            </p>
+            <p class="job_salary">80k-100k USD</p>
+            <p class="job_desc">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Praesentium adipisci sed reprehenderit nemo quo ex, quam debitis,
+              accusantium ipsa impedit quis. Necessitatibus vero sit non
+              provident ducimus distinctio doloribus placeat.
+            </p>
+            <p class="job_published">25/08/2025</p>
+            <div class="job_tags">
+              <span class="job_tag">Full time</span>
+              <span class="job_tag">Any</span>
+              <span class="job_tag">Electronics</span>
+            </div>
+          </div>
+          <div class="job_actions">
+            <button class="job_view_btn">
+              View <i class="fa-solid fa-eye"></i>
+            </button>
+            <div class="job_like_actions">
+              <button title="Not intrested" class="job_unlike_btn">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <button title="Intrested" class="job_like_btn">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job_logo">
+            <img class="job_logo_img" src="" alt="company name" />
+          </div>
+          <div class="job_content">
+            <p class="job-title">
+              <span class="job-company">Company</span>
+              <span class="job-profile">Software Engineer</span>
+            </p>
+            <p class="job_location">
+              <i class="fa-solid fa-location-dot"></i>Job Available in Country
+            </p>
+            <p class="job_salary">80k-100k USD</p>
+            <p class="job_desc">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Praesentium adipisci sed reprehenderit nemo quo ex, quam debitis,
+              accusantium ipsa impedit quis. Necessitatibus vero sit non
+              provident ducimus distinctio doloribus placeat.
+            </p>
+            <p class="job_published">25/08/2025</p>
+            <div class="job_tags">
+              <span class="job_tag">Full time</span>
+              <span class="job_tag">Any</span>
+              <span class="job_tag">Electronics</span>
+            </div>
+          </div>
+          <div class="job_actions">
+            <button class="job_view_btn">
+              View <i class="fa-solid fa-eye"></i>
+            </button>
+            <div class="job_like_actions">
+              <button title="Not intrested" class="job_unlike_btn">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <button title="Intrested" class="job_like_btn">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
