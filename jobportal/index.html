@@ -27,7 +27,7 @@
             ><span class="nav-label">Jobs</span>
           </a>
           <a href="#" class="nav-item"
-            ><i class="fa-solid fa-heart"></i
+            ><i class="fa-solid fa-heart"></i><span id="nav_fav">0</span
             ><span class="nav-label">Favourites</span></a
           >
         </nav>
@@ -64,92 +64,10 @@
           ><input id="job_search" placeholder="Search here..." />
         </div>
       </div>
-      <div class="jobs_container" id="jobs">
-        <div class="job-card">
-          <div class="job_logo">
-            <img
-              class="job_logo_img"
-              src="https://img.logo.dev/Splunk.com?token=pk_TLRk9T8ASV2UmMY8qXNNmQ"
-              alt="company name"
-            />
-          </div>
-          <div class="job_content">
-            <p class="job-title">
-              <span class="job-company">Company</span>
-              <span class="job-profile">Software Engineer</span>
-            </p>
-            <p class="job_location">
-              <i class="fa-solid fa-location-dot"></i>Job Available in Country
-            </p>
-            <p class="job_salary">80k-100k USD</p>
-            <p class="job_desc">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium adipisci sed reprehenderit nemo quo ex, quam debitis,
-              accusantium ipsa impedit quis. Necessitatibus vero sit non
-              provident ducimus distinctio doloribus placeat.
-            </p>
-            <p class="job_published">25/08/2025</p>
-            <div class="job_tags">
-              <span class="job_tag">Full time</span>
-              <span class="job_tag">Any</span>
-              <span class="job_tag">Electronics</span>
-            </div>
-          </div>
-          <div class="job_actions">
-            <button class="job_view_btn">
-              View <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="job_like_actions">
-              <button title="Not intrested" class="job_unlike_btn">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-              <button title="Intrested" class="job_like_btn">
-                <i class="fa-solid fa-heart"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="job-card">
-          <div class="job_logo">
-            <img class="job_logo_img" src="" alt="company name" />
-          </div>
-          <div class="job_content">
-            <p class="job-title">
-              <span class="job-company">Company</span>
-              <span class="job-profile">Software Engineer</span>
-            </p>
-            <p class="job_location">
-              <i class="fa-solid fa-location-dot"></i>Job Available in Country
-            </p>
-            <p class="job_salary">80k-100k USD</p>
-            <p class="job_desc">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium adipisci sed reprehenderit nemo quo ex, quam debitis,
-              accusantium ipsa impedit quis. Necessitatibus vero sit non
-              provident ducimus distinctio doloribus placeat.
-            </p>
-            <p class="job_published">25/08/2025</p>
-            <div class="job_tags">
-              <span class="job_tag">Full time</span>
-              <span class="job_tag">Any</span>
-              <span class="job_tag">Electronics</span>
-            </div>
-          </div>
-          <div class="job_actions">
-            <button class="job_view_btn">
-              View <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="job_like_actions">
-              <button title="Not intrested" class="job_unlike_btn">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-              <button title="Intrested" class="job_like_btn">
-                <i class="fa-solid fa-heart"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="jobs_container" id="jobs"></div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>
