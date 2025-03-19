@@ -1,27 +1,6 @@
-/**
- * Makes an API call to the job board and returns the data.
- * @param {Object} config - Configuration for the API call.
- * @returns {Promise<Object>} - The data returned from the API.
- */
-
-const api = async (config) => {
-  const { endpoint, method = "GET" } = config || {};
-  let url = "https://www.arbeitnow.com/api/job-board-api";
-  try {
-    const res = await fetch(url, {
-      method,
-    });
-    if (res.status >= 200 && res.status < 300) {
-      const data = await res.json();
-      return data;
-    }
-    throw res;
-  } catch (e) {
-    console.log(e, url);
-    throw new Error("API FAILED", { cause: e });
-  }
-};
-
+import { api } from "./api.js";
+import debounce from "./debounce.js";
+import { timeAgo } from "./time.js";
 /**
  * Fetches jobs from the API and displays them on the page.
  * @returns {Promise<void>}
@@ -33,6 +12,9 @@ const getJobs = async () => {
     if (data && data.data && data.data.length) {
       let jobs = data.data;
       showJobs(jobs);
+      handleLocationFilter(jobs);
+      handleFavFilter(jobs);
+      searchFilter(jobs);
     } else {
       //no jobs available
     }
@@ -50,37 +32,6 @@ function showJobs(jobs) {
   const jobsContainer = $("#jobs");
   const jobCards = jobs.map((item) => createJobCard(item));
   jobsContainer.append(jobCards);
-}
-
-/**
- * Calculates how long ago a date was from the current time.
- * @param {string} dateString - The date string to convert.
- * @returns {string} - A string representing how long ago the date was.
- */
-
-function timeAgo(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-  const seconds = Math.floor((now - date) / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(seconds / 3600);
-  const days = Math.floor(seconds / 86400);
-  const weeks = Math.floor(seconds / 604800);
-
-  if (weeks > 0) {
-    if (weeks > 8) {
-      return `more than 2 months`;
-    }
-    return `${weeks} week${weeks > 1 ? "s" : ""} ago`;
-  } else if (days > 0) {
-    return `${days} day${days > 1 ? "s" : ""} ago`;
-  } else if (hours > 0) {
-    return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-  } else if (minutes > 0) {
-    return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
-  } else {
-    return "Just now";
-  }
 }
 
 /**
@@ -153,10 +104,13 @@ function createJobCard(jobItem) {
   imgEl[0].onerror = loadDefaultImg;
 
   const unlikneBtn = jobCard.find(".job_unlike_btn");
-  handleUnlike(unlikneBtn, jobCard);
+  handleUnlike(unlikneBtn, jobCard, jobItem);
 
   const likeBtn = jobCard.find(".job_like_btn");
   handleLikeBtn(likeBtn, jobItem);
+
+  const viewBtn = jobCard.find(".job_view_btn");
+  handleViewBtn(viewBtn, jobItem);
 
   return jobCard;
 }
@@ -175,9 +129,10 @@ function loadDefaultImg() {
  * @param {jQuery} unlikneBtn - The jQuery object representing the unlike button.
  * @param {jQuery} jobCard - The jQuery object representing the job card to remove.
  */
-function handleUnlike(unlikneBtn, jobCard) {
+function handleUnlike(unlikneBtn, jobCard, jobItem) {
   unlikneBtn.on("click", function () {
     jobCard.remove();
+    jobItem.isLike = false;
   });
 }
 
@@ -193,13 +148,11 @@ function handleLikeBtn(likeBtn, jobItem) {
 
     let currCount = countEl.data("count") || 0;
 
-    console.log(countEl.html());
     let isAlreadyLiked = likeBtn.hasClass("job_liked_btn");
 
     if (isAlreadyLiked) {
       likeBtn.removeClass("job_liked_btn");
       currCount -= 1;
-      jobItem.isLike = false;
     } else {
       likeBtn.addClass("job_liked_btn");
       currCount += 1;
@@ -208,6 +161,91 @@ function handleLikeBtn(likeBtn, jobItem) {
 
     countEl.data("count", currCount);
     countEl.html(currCount);
+  });
+}
+function cleanJobs() {
+  $("#jobs").empty();
+}
+function handleLocationFilter(jobs) {
+  const locations = getLocations(jobs);
+
+  const options = locations.map((i) => $(`<option value="${i}">${i}</option>`));
+  const geoFilter = $("#geo-filter");
+  geoFilter.append(options);
+
+  geoFilter.on("change", function (e) {
+    const { value } = e.target;
+
+    let filteredJobs;
+    if (value === "") {
+      filteredJobs = jobs;
+    } else {
+      filteredJobs = jobs.filter((i) => i.location === value);
+    }
+    cleanJobs();
+    showJobs(filteredJobs);
+  });
+}
+
+function getLocations(jobs) {
+  const locations = jobs.map((i) => i.location);
+  let uniques = new Set(locations);
+
+  return [...uniques].slice(0, 5);
+}
+
+function handleFavFilter(jobs) {
+  const favFilter = $("#fav-filter");
+
+  favFilter.on("change", function (e) {
+    const { value } = e.target;
+
+    let filteredJobs;
+    if (value === "") {
+      filteredJobs = jobs;
+    } else {
+      filteredJobs = jobs.filter((i) => String(i.isLike) === value);
+    }
+    cleanJobs();
+    showJobs(filteredJobs);
+  });
+}
+
+function searchFilter(jobs) {
+  const searchBox = $("#job_search");
+
+  const debounceSearch = debounce(searchJobFilter);
+  searchBox.on("input", function (e) {
+    debounceSearch(e, jobs);
+  });
+}
+
+function searchJobFilter(e, jobs) {
+  const { value } = e.target;
+
+  let filteredJobs;
+  if (value == "") {
+    filteredJobs = jobs;
+  } else {
+    filteredJobs = jobs.filter(
+      (i) =>
+        i.title.toLowerCase().includes(value.toLowerCase()) ||
+        i.company_name.toLowerCase().includes(value.toLowerCase())
+    );
+  }
+  cleanJobs();
+  showJobs(filteredJobs);
+}
+
+function handleViewBtn(viewBtn, jobItem) {
+  viewBtn.on("click", function () {
+    const dialog = $("#view_job");
+    document.body.style.overflow = "hidden";
+
+    $("#view_job_title").html(jobItem.title);
+    $("#view_job_company").html(jobItem.company_name);
+    $("#view_job_dec").html(jobItem.description);
+    dialog.show();
   });
 }
 

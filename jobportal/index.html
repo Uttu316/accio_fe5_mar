@@ -46,17 +46,14 @@
           <select name="geo" id="geo-filter">
             <option disabled selected value="">Select Location</option>
             <option value="">Anywhere</option>
-            <option value="usa">USA</option>
-            <option value="canada">Canada</option>
-            <option value="china">China</option>
-            <option value="japan">Japan</option>
           </select>
           <label for="sort-filter"
-            ><i class="fa-solid fa-sort"></i> Sort Salary:
+            ><i class="fa-solid fa-sort"></i> Favourites:
           </label>
-          <select name="sort" id="sort-filter">
-            <option value="hl">High to Low</option>
-            <option value="lh">Low to High</option>
+          <select name="sort" id="fav-filter">
+            <option value="">All</option>
+            <option value="true">Intrested</option>
+            <option value="false">Rejected</option>
           </select>
         </div>
         <div class="search_box">
@@ -66,8 +63,39 @@
       </div>
       <div class="jobs_container" id="jobs"></div>
     </section>
+    <div id="view_job">
+      <div class="view_job_wrapper">
+        <div class="view_job_conatainer">
+          <button title="Close" id="close_btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <div class="view_job_content">
+            <div class="view_header">
+              <div class="view_job_img">
+                <img src="" id="view_job_logo" />
+              </div>
+              <div class="view_job_heading">
+                <p id="view_job_title">Title</p>
+                <p id="view_job_company">Company</p>
+              </div>
+            </div>
+            <div id="view_job_dec">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia
+              a blanditiis tenetur natus harum unde praesentium, eveniet
+              doloremque, similique eligendi sit architecto quis cumque illum ab
+              vel ex nemo ratione?
+            </div>
+          </div>
+          <div class="view_job_actions">
+            <button id="apply_btn">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <script src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/view_job.js"></script>
   </body>
 </html>
