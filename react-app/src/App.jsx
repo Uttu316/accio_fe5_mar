@@ -1,26 +1,17 @@
 import "./App.css";
+import Counter from "./components/counter";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import Products from "./components/products";
 
 const App = () => {
-  const fname = "Sony";
-  const lname = "App";
-
   return (
-    <>
-      <div className="home_container">
-        <h1 className="heading">Hello! Students</h1>
-        <h2 className="subheading">Welcome to React</h2>
-        <h3>{fname + " " + lname}</h3>
-        <h4>{2 * 2}</h4>
-        <ol>
-          <li>Sujata</li>
-          <li>Adarsh</li>
-          <li>Nilesh</li>
-          <li>Om</li>
-          <li>Aditi</li>
-        </ol>
-      </div>
-      <div>Hello</div>
-    </>
+    <div>
+      <Header name={"Nilesh"} />
+      <Counter />
+      <Products />
+      <Footer />
+    </div>
   );
 };
 
