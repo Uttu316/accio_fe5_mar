@@ -1,0 +1,17 @@
+
+.home_container{
+  background-color: white;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  width: 50%;
+  box-shadow: 4px 4px 4px #ccc;
+}
+
+.heading{
+  color: orange;
+}
+.subheading{
+  color: brown;
+}
