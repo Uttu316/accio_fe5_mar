@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
-
+const Counter = ({ setCount, count }) => {
   const onAdd = () => {
     setCount(count + 1); //async
     console.log(count);
