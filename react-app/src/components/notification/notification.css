@@ -1,0 +1,12 @@
+
+
+
+.notification{
+    border-radius: 4px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    background-color: white;
+    padding: 8px;
+}

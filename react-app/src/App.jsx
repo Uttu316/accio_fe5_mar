@@ -1,16 +1,11 @@
 import "./App.css";
-import Counters from "./components/Counters";
-import Footer from "./components/footer";
-import Header from "./components/header";
-import Products from "./components/products";
+import MenuPage from "./pages/MenuPage";
+import ChatPage from "./pages/ChatPage";
 
 const App = () => {
   return (
     <div>
-      <Header name={"Nilesh"} />
-      <Counters />
-      {/* <Products /> */}
-      {/* <Footer /> */}
+      <ChatPage />
     </div>
   );
 };
