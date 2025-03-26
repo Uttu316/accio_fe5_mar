@@ -1,15 +1,14 @@
-import { useState } from "react";
 import styles from "./chatBox.module.css";
 import ChatBubble from "../chatBubble";
+import { useEffect, useRef } from "react";
 
-const ChatBox = () => {
-  const [messages, setMessages] = useState([
-    { role: "user", message: "Hey", id: 1212, created_at: Date.now() },
-    { role: "bot", message: "Hello", id: 53434, created_at: Date.now() },
-  ]);
-
+const ChatBox = ({ messages }) => {
+  const boxRef = useRef();
+  useEffect(() => {
+    boxRef.current.scrollTop = boxRef.current.scrollHeight;
+  }, [(messages || []).length]);
   return (
-    <div className={styles.chatBox}>
+    <div ref={boxRef} className={styles.chatBox}>
       {messages.map((msg) => (
         <ChatBubble key={msg.id} msg={msg} />
       ))}

@@ -1,4 +1,6 @@
 import styles from "./chatBubble.module.css";
+import Markdown from "react-markdown";
+
 const ChatBubble = ({ msg }) => {
   const { message, role } = msg;
   const isBot = role === "bot";
@@ -7,7 +9,9 @@ const ChatBubble = ({ msg }) => {
       className={`${styles.chatBubble} ${isBot ? styles.left : styles.right}`}
     >
       <p className={styles.heading}>{isBot ? "Bot" : "You"}</p>
-      <p className={styles.msg}>{message}</p>
+      <div className={styles.msg}>
+        <Markdown>{message}</Markdown>
+      </div>
     </div>
   );
 };

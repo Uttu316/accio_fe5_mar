@@ -30,3 +30,17 @@ align-self: start;
     font-size: 14px;
     margin-top: 4px;
 }
+
+.msg ul{
+    padding: 8px 14px;
+}
+.msg ol{
+    padding: 8px 14px;
+}
+.msg pre{
+    background-color: rgb(190, 190, 190);
+    padding: 8px;
+    border-radius: 4px;
+    word-wrap: break-word;
+    margin: 10px;
+}
