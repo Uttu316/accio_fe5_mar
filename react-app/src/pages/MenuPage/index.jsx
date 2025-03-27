@@ -2,8 +2,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import getMeals from "../../services/menuServices/getMeals";
 import Notify from "../../components/notification";
 import Banner from "../../components/banner";
+import { useNavigate } from "react-router";
+import Header from "../../components/header";
 
 const MenuPage = () => {
+  const navigate = useNavigate();
+
   const [status, setStaus] = useState("loading");
   const [meals, setMeals] = useState([]);
   const [count, setCount] = useState(0);
@@ -57,24 +61,28 @@ const MenuPage = () => {
     setNotification(status);
   }, [status]);
 
-  console.log("Render");
+  const onChat = () => {
+    navigate("/chat");
+  };
+
   return (
     <div>
+      <Header />
       <h1>Recipies Corner</h1>
       {isLoading && <h2>Loading...</h2>}
       {isError && <h2>Something Went Wrong</h2>}
       {noMeals && <h2>No Meals Available</h2>}
-      <button onClick={() => setCount(count + 1)}>Count {count}</button>
+
       {hasMeals &&
         formatedMeals.map((item) => (
           <div key={item.id}>
             <p>{item.title}</p>
           </div>
         ))}
+      <button onClick={onChat}>Talk to Customer Support</button>
       {showNotification && (
         <Notify message={showNotification} closeNotification={onCloseNotify} />
       )}
-      <Banner />
     </div>
   );
 };
