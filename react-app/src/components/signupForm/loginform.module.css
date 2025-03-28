@@ -50,3 +50,9 @@
     font-size: 14px;
     margin-bottom: 8px;
 }
+
+.signin_link{
+    margin-top: 5px;
+    text-align: center;
+    display: block;
+}

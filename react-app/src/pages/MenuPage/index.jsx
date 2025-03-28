@@ -65,6 +65,10 @@ const MenuPage = () => {
     navigate("/chat");
   };
 
+  const showProduct = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <div>
       <Header />
@@ -75,7 +79,7 @@ const MenuPage = () => {
 
       {hasMeals &&
         formatedMeals.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} onClick={() => showProduct(item.id)}>
             <p>{item.title}</p>
           </div>
         ))}

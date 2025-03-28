@@ -53,7 +53,9 @@ const LoginForm = () => {
       <button disabled={isLoading} type="submit">
         {isLoading ? "Submiting..." : "Login"}
       </button>
-      <Link to="/signup">Signup</Link>
+      <Link className={styles.signup_link} to="/signup">
+        Signup
+      </Link>
     </form>
   );
 };

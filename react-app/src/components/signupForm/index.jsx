@@ -64,7 +64,9 @@ const SignupForm = () => {
       <button disabled={isLoading} type="submit">
         {isLoading ? "Submiting..." : "Signup"}
       </button>
-      <Link to="/login">Already have an account? Login</Link>
+      <Link className={styles.signin_link} to="/login">
+        Already have an account? Login
+      </Link>
     </form>
   );
 };
