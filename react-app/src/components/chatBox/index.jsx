@@ -1,8 +1,10 @@
 import styles from "./chatBox.module.css";
 import ChatBubble from "../chatBubble";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { ChatContext } from "../../contexts/chatContext";
 
-const ChatBox = ({ messages }) => {
+const ChatBox = () => {
+  const { messages } = useContext(ChatContext);
   const boxRef = useRef();
   useEffect(() => {
     boxRef.current.scrollTop = boxRef.current.scrollHeight;
