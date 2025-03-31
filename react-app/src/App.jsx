@@ -1,15 +1,18 @@
+import React, { Suspense } from "react";
 import "./App.css";
-import MenuPage from "./pages/MenuPage";
-import ChatPage from "./pages/ChatPage";
-import ErrorBoundary from "./components/errorBoundary";
+
 import { BrowserRouter, Route, Routes } from "react-router";
-import AboutPage from "./pages/AboutPage";
-import LoginPage from "./pages/LoginPage";
-import NotFound from "./pages/NotFound";
-import SignUpPage from "./pages/Signup";
-import PrivateRoute from "./routes/privateRoute";
-import ProtectedRoute from "./routes/protectedRoute";
-import ProductPage from "./pages/ProductPage";
+
+const MenuPage = React.lazy(() => import("./pages/MenuPage"));
+const ChatPage = React.lazy(() => import("./pages/ChatPage"));
+const ErrorBoundary = React.lazy(() => import("./components/errorBoundary"));
+const AboutPage = React.lazy(() => import("./pages/AboutPage"));
+const LoginPage = React.lazy(() => import("./pages/LoginPage"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const SignUpPage = React.lazy(() => import("./pages/Signup"));
+const PrivateRoute = React.lazy(() => import("./routes/privateRoute"));
+const ProtectedRoute = React.lazy(() => import("./routes/protectedRoute"));
+const ProductPage = React.lazy(() => import("./pages/ProductPage"));
 
 const App = () => {
   return (
@@ -22,7 +25,14 @@ const App = () => {
           <Route path="/about" element={<AboutPage />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="/chat" element={<ChatPage />} />
+            <Route
+              path="/chat"
+              element={
+                <Suspense fallback={<h1>Loading Chat...</h1>}>
+                  <ChatPage />
+                </Suspense>
+              }
+            />
           </Route>
 
           <Route element={<ProtectedRoute />}>
